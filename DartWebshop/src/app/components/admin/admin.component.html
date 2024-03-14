@@ -1,0 +1,72 @@
+<div class="admins-form-container">
+<div class="admin-form">
+  <h2>Product Toevoegen</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="product-category-id">Product Categorie:</label>
+      <select id="product-category-id" name="productCategoryID" [(ngModel)]="newProduct.categorie_id">
+        <option value="1">Dartpijlen</option>
+        <option value="3">Dartborden</option>
+        <option value="4">Dartsurrounds</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="product-name">Product Naam:</label>
+      <input type="text" id="product-name" name="productName" [(ngModel)]="newProduct.naam">
+    </div>
+    <div class="form-group">
+      <label for="product-price">Prijs:</label>
+      <input type="number" id="product-price" name="productPrice" step="0.01" min="0" [(ngModel)]="newProduct.prijs" >
+    </div>
+    <div class="form-group">
+      <label for="product-description">Beschrijving:</label>
+      <textarea id="product-description" name="productDescription" [(ngModel)]="newProduct.beschrijving"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="product-image-url">Afbeelding URL:</label>
+      <input type="url" id="product-image-url" name="productImageURL" pattern="https?://.+" [(ngModel)]="newProduct.afbeelding">
+    </div>
+    <div class="form-group">
+      <label for="product-stock">Voorraad:</label>
+      <input type="number" id="product-stock" name="productStock" min="0" [(ngModel)]="newProduct.voorraad">
+    </div>
+    <button type="submit">Toevoegen</button>
+  </form>
+  <div *ngIf="confirmFeedback">{{ confirmFeedback }}</div>
+  </div>
+  <div class="admin-form">
+  <h2>Product Verwijderen</h2>
+  <form>
+    <div class="form-group">
+      <label for="delete-product">Product:</label>
+      <select id="delete-product" name="deleteProduct" [(ngModel)]="selectedProduct">
+        <option *ngFor="let product of products" [ngValue]="product">{{ product.naam }}</option>
+      </select>
+    </div>
+    <button type="submit" (click)="onDeleteSelected()">Verwijder Product</button>
+  </form>
+  <div *ngIf="deletionFeedback">{{ deletionFeedback }}</div>
+</div>
+</div>
+  <div class="toast-notification" [ngClass]="{'show': toastService.showToast, 'error': isError && toastType === 'error', 'success': !isError && toastType === 'success', 'warning': isError && toastType === 'warning'}">
+    <div class="toast-close" (click)="toastService.closeToast()">&times;</div>
+    <div class="toast-content" *ngIf="toastService.showToast">
+      <div class="image-container" *ngIf="toastType === 'error'">
+        <img src="https://static.vecteezy.com/system/resources/previews/017/178/032/original/round-cross-mark-symbol-with-transparent-background-free-png.png" alt="Error Image">
+      </div>
+      <div class="image-container" *ngIf="toastType === 'warning'">
+        <img src="https://www.burenalert.nl/wp-content/uploads/2017/01/Uitroepteken-icon.png" alt="Warning Image">
+      </div>
+      <div class="image-container" *ngIf="toastType === 'success'">
+        <img src="https://media.istockphoto.com/id/1094780808/nl/vector/goedkeuring-symbool-vinkje-in-een-cirkel-met-de-hand-getekend-vector-groene-teken-ok.jpg?s=612x612&w=0&k=20&c=HAMoh0tkPA1UoOteUF_H2-x8NCRBn0BecPCKpH6By7U=" alt="Success Image">
+      </div>
+      <div class="toast-text">
+        <div class="toast-header" [ngClass]="{'error': isError && toastType === 'error', 'success': !isError && toastType === 'success', 'warning': isError && toastType === 'warning'}">
+          {{ toastService.getToastHeader() }}
+        </div>
+        {{ toastService.toastMessage }}
+      </div>
+    </div>
+  </div>
+
+

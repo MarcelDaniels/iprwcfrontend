@@ -1,0 +1,35 @@
+<div class="surround-card-container">
+  <div *ngFor="let surround of surrounds" class="surround-card">
+    <div class="surround-header">
+      <div class="surround-image-container">
+        <img src="{{surround.afbeelding}}" alt="{{ surround.naam }} afbeelding" class="surround-image">
+      </div>
+      <div class="surround-info">
+        <div class="surround-name">{{ surround.naam }}</div>
+        <div class="surround-price-stock">
+          <div class="surround-price">
+            {{ surround.prijs.toFixed(2) | currency:'EUR':'symbol':'1.2-2' }}
+          </div>
+        </div>
+        <div class="box">
+          <div class="meer-info-sectie">
+            <div class="beschrijving">{{ surround.beschrijving }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="surround-stock">
+      <div class="surround-stock-indicator" [ngClass]="{'in-stock': surround.voorraad > 0, 'out-of-stock': surround.voorraad <= 0}">
+        <span class="stock-dot" [ngClass]="{'in-stock-dot': surround.voorraad > 0, 'out-of-stock-dot': surround.voorraad <= 0}"></span>
+      </div>
+      <div [ngClass]="{'surround-stock-label': true, 'out-of-stock': surround.voorraad <= 0 }">
+        {{ surround.voorraad > 0 ? 'Op voorraad' : 'Uitverkocht' }}
+      </div>
+      <button class="add-to-cart-button" [ngClass]="{'add-to-cart-button': true, 'out-of-stock-button': surround.voorraad <= 0}"
+              (click)="addToCart(surround)" [disabled]="surround.voorraad <= 0">In winkelmandje</button>
+    </div>
+  </div>
+</div>
+
+
+

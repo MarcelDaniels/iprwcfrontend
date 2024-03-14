@@ -1,0 +1,134 @@
+.dart-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-to-cart-button {
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.add-to-cart-button:hover {
+  background-color: #0b7dda;
+}
+
+.add-to-cart-button:active {
+  transform: scale(0.95);
+}
+
+
+.dart-card {
+  width: 300px;
+  margin: 20px;
+  border-radius: 15px;
+  background-color: rgba(178, 207, 251, 0.45);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.dart-card:hover {
+  transform: translateY(-10px);
+}
+
+.dart-header {
+  height: 420px;
+  margin: 20px;
+}
+
+.dart-image-container {
+  border-radius: 15px 15px 0 0;
+  overflow: hidden;
+}
+
+.dart-image {
+  width: 100%;
+  height: auto;
+}
+
+.dart-info {
+  flex-grow: 1;
+}
+
+.dart-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.dart-price {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.dart-stock {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.dart-stock-label {
+  margin-left: 0;
+}
+
+.dart-stock-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-bottom: -7px;
+  margin-left: 20px;
+}
+
+.stock-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: block;
+}
+
+.in-stock-dot {
+  background-color: #4caf50;
+}
+
+.out-of-stock-dot {
+  background-color: #f44336;
+}
+
+.out-of-stock {
+  color: #f44336;
+}
+
+
+.box {
+  background-color: whitesmoke;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  margin-top: 3px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aanpassen van schaduw indien nodig */
+}
+
+.beschrijving{
+  text-align: center;
+  margin-top: 3px;
+}
+
+.dart-image{
+  height: 280px;
+}
+
+.out-of-stock-button{
+  cursor: not-allowed;
+}
+
+
+

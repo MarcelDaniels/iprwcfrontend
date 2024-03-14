@@ -1,0 +1,33 @@
+<div class="dart-card-container">
+<div *ngFor="let dart of dartpijlen" class="dart-card">
+  <div class="dart-header">
+    <div class="dart-image-container">
+      <img src="{{dart.afbeelding}}" alt="{{ dart.naam }} afbeelding" class="dart-image">
+    </div>
+    <div class="dart-info">
+    <div class="dart-name">{{ dart.naam }}</div>
+    <div class="dart-price-stock">
+      <div class="dart-price">
+        {{ dart.prijs.toFixed(2) | currency:'EUR':'symbol':'1.2-2' }}
+      </div>
+    </div>
+      <div class="box">
+      <div class="meer-info-sectie">
+        <div class="beschrijving">{{ dart.beschrijving }}</div>
+      </div>
+      </div>
+    </div>
+    </div>
+      <div class="dart-stock">
+        <div class="dart-stock-indicator" [ngClass]="{'in-stock': dart.voorraad > 0, 'out-of-stock': dart.voorraad <= 0}">
+          <span class="stock-dot" [ngClass]="{'in-stock-dot': dart.voorraad > 0, 'out-of-stock-dot': dart.voorraad <= 0}"></span>
+        </div>
+        <div [ngClass]="{'dart-stock-label': true, 'out-of-stock': dart.voorraad <= 0 }">
+          {{ dart.voorraad > 0 ? 'Op voorraad' : 'Uitverkocht' }}
+      </div>
+        <button class="add-to-cart-button" [ngClass]="{'add-to-cart-button': true, 'out-of-stock-button': dart.voorraad <= 0}"
+                (click)="addToCart(dart)" [disabled]="dart.voorraad <= 0">In winkelmandje</button>
+    </div>
+  </div>
+</div>
+

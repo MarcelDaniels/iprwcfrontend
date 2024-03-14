@@ -1,0 +1,34 @@
+<div class="dartboard-card-container">
+  <div *ngFor="let board of dartboards" class="dartboard-card">
+    <div class="dartboard-header">
+      <div class="dartboard-image-container">
+        <img src="{{board.afbeelding}}" alt="{{ board.naam }} afbeelding" class="dartboard-image">
+      </div>
+      <div class="dartboard-info">
+        <div class="dartboard-name">{{ board.naam }}</div>
+        <div class="dartboard-price-stock">
+          <div class="dartboard-price">
+            {{ board.prijs.toFixed(2) | currency:'EUR':'symbol':'1.2-2' }}
+          </div>
+        </div>
+        <div class="box">
+          <div class="meer-info-sectie">
+            <div class="beschrijving">{{ board.beschrijving }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dartboard-stock">
+      <div class="dartboard-stock-indicator" [ngClass]="{'in-stock': board.voorraad > 0, 'out-of-stock': board.voorraad <= 0}">
+        <span class="stock-dot" [ngClass]="{'in-stock-dot': board.voorraad > 0, 'out-of-stock-dot': board.voorraad <= 0}"></span>
+      </div>
+      <div [ngClass]="{'dartboard-stock-label': true, 'out-of-stock': board.voorraad <= 0 }">
+        {{ board.voorraad > 0 ? 'Op voorraad' : 'Uitverkocht' }}
+      </div>
+      <button class="add-to-cart-button" [ngClass]="{'add-to-cart-button': true, 'out-of-stock-button': board.voorraad <= 0}"
+              (click)="addToCart(board)" [disabled]="board.voorraad <= 0">In winkelmandje</button>
+    </div>
+  </div>
+</div>
+
+
