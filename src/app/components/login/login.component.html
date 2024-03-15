@@ -1,0 +1,49 @@
+
+<div class="login-container">
+  <h2>{{ isLoginMode ? 'Inloggen' : 'Registreren' }}</h2>
+  <form *ngIf="isLoginMode" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="form-group">
+      <label for="username">Gebruikersnaam:</label>
+      <input type="text" formControlName="username" />
+    </div>
+    <div class="form-group">
+      <label for="password">Wachtwoord:</label>
+      <input type="password" formControlName="password" />
+    </div>
+    <button class="login" type="submit">Inloggen</button>
+  </form>
+
+  <form *ngIf="!isLoginMode" [formGroup]="registerForm">
+    <div>
+      <label for="username">Gebruikersnaam:</label>
+      <input type="text" id="username" formControlName="username" />
+
+      <label for="password">Wachtwoord:</label>
+      <input type="password" id="password" formControlName="password" />
+
+      <button  class="login" type="submit" (click)="register()">Registreren</button>
+    </div>
+  </form>
+
+  <button class="register" (click)="toggleMode()">
+    {{ isLoginMode ? 'Nog geen account? Registreer hier.' : 'Al een account? Log hier in.' }}
+  </button>
+  <div class="toast-notification" [ngClass]="{'show': toastService.showToast, 'error': isError && toastType === 'error', 'success': !isError && toastType === 'success', 'warning': isError && toastType === 'warning'}">
+    <div class="toast-close" (click)="toastService.closeToast()">&times;</div>
+    <div class="toast-content" *ngIf="toastService.showToast">
+      <div class="image-container" *ngIf="toastType === 'error'">
+        <img src="https://static.vecteezy.com/system/resources/previews/017/178/032/original/round-cross-mark-symbol-with-transparent-background-free-png.png" alt="Error Image">
+      </div>
+      <div class="image-container" *ngIf="toastType === 'warning'">
+        <img src="https://www.burenalert.nl/wp-content/uploads/2017/01/Uitroepteken-icon.png" alt="Warning Image">
+      </div>
+      <div class="image-container" *ngIf="toastType === 'success'">
+        <img src="https://www.pngall.com/wp-content/uploads/8/Green-Check-Mark-PNG-Image.png" alt="Success Image">
+      </div>
+      <div class="toast-text">
+        <div class="toast-header" [ngClass]="{'error': isError && toastType === 'error', 'success': !isError && toastType === 'success', 'warning': isError && toastType === 'warning'}">
+          {{ toastService.getToastHeader() }}
+        </div>
+        {{ toastService.toastMessage }}
+      </div>
+</div>
